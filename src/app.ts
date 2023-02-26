@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import logger from "morgan";
+import statusMessages from "../config/status-messages";
 
 export const app = express();
 
@@ -13,7 +14,7 @@ app.use((req, res, next) => {
 	res.setHeader("Access-Control-Allow-Headers", "*");
 
 	if (req.method === "OPTIONS") {
-		res.status(204).json([]);
+		res.status(statusMessages.httpStatusCode.NO_CONTENT).json([]);
 	} else {
 		next();
 	}
